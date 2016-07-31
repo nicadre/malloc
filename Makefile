@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 13:23:47 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/29 21:26:06 by niccheva         ###   ########.fr        #
+#    Updated: 2016/07/31 17:46:00 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,6 +30,15 @@ INCLUDES	=	-I./includes
 INCLUDES	+=	-I./libraries/liblist/includes
 
 SOURCES		=	malloc.c
+SOURCES		+=	malloc_bzero.c
+SOURCES		+=	malloc_memset.c
+SOURCES		+=	init_malloc.c
+SOURCES		+=	create_large_zone.c
+SOURCES		+=	create_zone_for.c
+SOURCES		+=	size_for_zone_type.c
+SOURCES		+=	size_for_elem_in_zone.c
+SOURCES		+=	add_zone.c
+SOURCES		+=	del_zone.c
 
 OBJECTS		=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 
@@ -44,7 +53,7 @@ libs:
 
 $(BUILD)/$(NAME): libs $(OBJECTS)
 	@echo "\n\033[0;32m$(NAME) compiled:\t\033[0;m\c"
-	$(CC) -shared -o $(BUILD)/$(NAME) $(OBJECTS)
+	$(CC) -shared -o $(BUILD)/$(NAME) $(OBJECTS) -L./libraries/liblist/build -llist
 	@ln -sf $(BUILD)/$(NAME) libft_malloc.so
 
 -include $(OBJECTS:.o=.d)
