@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 23:14:43 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:37 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/04 12:29:06 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,19 @@
 #include "malloc.h"
 #include <sys/mman.h>
 
-void		print_zone(const t_zone *zone);
+static void	init_elems(struct s_elem *elems, size_t size)
+{
+	while (size--)
+	{
+		elems[size].is_free = true;
+		elems[size].size = 0;
+	}
+}
 
 t_zone		*create_zone_for(t_zone_type type)
 {
 	t_zone			*zone;
-	bool			*is_frees;
+	struct s_elem	*elems;
 	void			*data;
 	struct s_size	size;
 
@@ -29,17 +36,16 @@ t_zone		*create_zone_for(t_zone_type type)
 				MAP_ANON | MAP_PRIVATE, -1, 0);
 	if (data)
 	{
-//		malloc_bzero(data, sizeof(t_zone)
-//					+ (size.number_of_elems * MEMBER_SIZE(t_zone, is_frees)));
-		malloc_bzero(data, size.page_size);
+		malloc_bzero(data, sizeof(t_zone)
+					+ (size.number_of_elems * MEMBER_SIZE(t_zone, elems)));
 		zone = (t_zone *)data;
 		zone->size = size;
 		zone->free_elems = zone->size.number_of_elems;
-		zone->is_frees = (bool *)(zone + 1);
+		zone->elems = (struct s_elem *)(zone + 1);
 		zone->type = type;
 		init_list(&(zone->list));
-		is_frees = zone->is_frees;
-		malloc_memset(is_frees, true, zone->size.number_of_elems);
+		elems = zone->elems;
+		init_elems(elems, zone->size.number_of_elems);
 	}
 	else
 		zone = NULL;

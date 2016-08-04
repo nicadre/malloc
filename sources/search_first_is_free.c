@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 16:46:13 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/03 18:05:09 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/04 12:31:31 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ size_t		search_first_is_free(t_zone *zone)
 	{
 		while (i < zone->size.number_of_elems)
 		{
-			if (zone->is_frees[i] == true)
+			if (zone->elems[i].is_free == true)
 				return (i);
 			++i;
 		}

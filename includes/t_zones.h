@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 21:35:00 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/03 21:55:18 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/04 12:24:17 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,17 @@ struct						s_size
 	size_t					number_of_elems;
 };
 
+struct						s_elem
+{
+	bool					is_free;
+	size_t					size;
+};
+
 struct						s_zone
 {
 	size_t					free_elems;
 	struct s_size			size;
-	bool					*is_frees;
+	struct s_elem			*elems;
 	t_zone_type				type;
 	t_list					list;
 };
@@ -49,7 +55,7 @@ struct						s_large_zone
 {
 	size_t					free_elems;
 	struct s_size			size;
-	bool					*is_frees;
+	struct s_elem			*elems;
 	t_zone_type				type;
 	t_list					list;
 };

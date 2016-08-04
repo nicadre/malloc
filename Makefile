@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 13:23:47 by niccheva          #+#    #+#              #
-#    Updated: 2016/08/03 21:55:30 by niccheva         ###   ########.fr        #
+#    Updated: 2016/08/04 12:35:36 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -49,6 +49,7 @@ SOURCES		+=	malloc_putchar.c
 SOURCES		+=	malloc_putstr.c
 SOURCES		+=	malloc_putendl.c
 SOURCES		+=	malloc_putaddr.c
+SOURCES		+=	malloc_putnbr.c
 
 OBJECTS		=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 

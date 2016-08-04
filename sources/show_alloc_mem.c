@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 17:29:06 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:32:54 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/04 12:35:55 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,18 @@ void		print_zone(const t_zone *zone)
 	malloc_putchar('\n');
 	i = 0;
 	data = (void *)(zone + sizeof(*zone))
-		+ (zone->size.number_of_elems * MEMBER_SIZE(t_zone, is_frees));
+		+ (zone->size.number_of_elems * MEMBER_SIZE(t_zone, elems));
 	while (i < zone->size.number_of_elems)
 	{
-		if (zone->is_frees[i] == false)
+		if (zone->elems[i].is_free == false)
 		{
 			malloc_putaddr(data + (i * size_for_elem_in_zone(zone->type)));
 			malloc_putstr(" - ");
 			malloc_putaddr(data + (i * size_for_elem_in_zone(zone->type))
-						   + size_for_elem_in_zone(zone->type));
-			malloc_putchar('\n');
+						   + zone->elems[i].size);
+			malloc_putstr(" : ");
+			malloc_putnbr(zone->elems[i].size);
+			malloc_putendl(" bytes");
 		}
 		++i;
 	}
