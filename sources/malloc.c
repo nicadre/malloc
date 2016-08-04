@@ -6,13 +6,11 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/30 21:56:50 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 12:30:49 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/04 19:38:55 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "malloc.h"
-
-#include <unistd.h>
 
 void			*malloc(size_t size)
 {

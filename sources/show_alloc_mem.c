@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/08/02 17:29:06 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 12:35:55 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/04 18:37:27 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void		print_zone(const t_zone *zone)
 	malloc_putaddr(zone);
 	malloc_putchar('\n');
 	i = 0;
-	data = (void *)(zone + sizeof(*zone))
+	data = ((char *)(zone + 1))
 		+ (zone->size.number_of_elems * MEMBER_SIZE(t_zone, elems));
 	while (i < zone->size.number_of_elems)
 	{
