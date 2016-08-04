@@ -1,23 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/02 17:03:03 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/04 00:46:36 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_zones.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include "puts.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+int main(void)
 {
-	if (b)
-	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
-	}
-	return (b);
+	char	*s;
+
+	s = (char *)malloc(42);
+	show_alloc_mem();
+	return (0);
 }

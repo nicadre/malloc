@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   puts.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/03 19:25:53 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/03 19:27:53 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_zones.h"
+#ifndef PUTS_H
+# define PUTS_H
 
-void		*malloc_memset(void *b, int c, size_t len)
-{
-	if (b)
-	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
-	}
-	return (b);
-}
+# include <unistd.h>
+
+ssize_t		malloc_putchar(const char c);
+ssize_t		malloc_putstr(const char *s);
+ssize_t		malloc_putendl(const char *s);
+ssize_t		malloc_putaddr(const void *p);
+
+#endif

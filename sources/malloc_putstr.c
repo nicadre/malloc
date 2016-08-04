@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   malloc_putstr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/03 19:34:15 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/03 21:57:17 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_zones.h"
+#include "puts.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+ssize_t		malloc_putstr(const char *s)
 {
-	if (b)
-	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
-	}
-	return (b);
+	return (write(1, s, malloc_strlen(s)));
 }

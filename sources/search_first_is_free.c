@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   search_first_is_free.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/02 16:46:13 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/03 18:05:09 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_zones.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+#include <stdio.h>
+
+size_t		search_first_is_free(t_zone *zone)
 {
-	if (b)
+	size_t	i;
+
+	i = 0;
+	if (zone)
 	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
+		while (i < zone->size.number_of_elems)
+		{
+			if (zone->is_frees[i] == true)
+				return (i);
+			++i;
+		}
 	}
-	return (b);
+	return (i);
 }

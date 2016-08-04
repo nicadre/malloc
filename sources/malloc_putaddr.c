@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   malloc_putaddr.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/03 19:39:51 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/03 21:39:21 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_zones.h"
+#include "puts.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+static ssize_t	malloc_putsize_t(const size_t nbr)
 {
-	if (b)
-	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
-	}
-	return (b);
+	static const char	*base = "0123456789ABCDEF";
+	int					ret;
+
+	if (nbr < 16)
+		return (malloc_putchar(base[nbr]));
+	ret = malloc_putsize_t(nbr / 16);
+	ret += malloc_putsize_t(nbr % 16);
+	return (ret);
+}
+
+ssize_t		malloc_putaddr(const void *p)
+{
+	return (malloc_putstr("0x") + malloc_putsize_t((size_t)p));
 }

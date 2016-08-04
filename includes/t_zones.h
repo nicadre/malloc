@@ -6,7 +6,7 @@
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/07/29 21:35:00 by niccheva          #+#    #+#             */
-/*   Updated: 2016/07/31 17:41:04 by niccheva         ###   ########.fr       */
+/*   Updated: 2016/08/03 21:55:18 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 # include "list.h"
 # include <stddef.h>
+# include <stdbool.h>
+
+# define MEMBER_SIZE(type, member) (sizeof(*((type *)NULL)->member))
 
 typedef struct s_zone		t_zone;
 typedef struct s_large_zone	t_large_zone;
@@ -37,7 +40,7 @@ struct						s_zone
 {
 	size_t					free_elems;
 	struct s_size			size;
-	char					*is_frees;
+	bool					*is_frees;
 	t_zone_type				type;
 	t_list					list;
 };
@@ -46,7 +49,7 @@ struct						s_large_zone
 {
 	size_t					free_elems;
 	struct s_size			size;
-	char					*is_frees;
+	bool					*is_frees;
 	t_zone_type				type;
 	t_list					list;
 };
@@ -59,10 +62,18 @@ t_zone						*create_zone_for(t_zone_type type);
 struct s_size				size_for_zone_type(t_zone_type type);
 size_t						size_for_elem_in_zone(t_zone_type type);
 
+t_zone_type					zone_type_for_size(size_t size);
+
 void						add_zone(t_zone *zone);
 void						del_zone(t_zone *zone);
 
 void						malloc_bzero(void *s, size_t n);
 void						*malloc_memset(void *b, int c, size_t len);
+size_t						malloc_strlen(const char *s);
+
+t_zone						*search_zone_for_type(t_zone_type type);
+t_zone						*get_zone_for_size(size_t size);
+
+size_t						search_first_is_free(t_zone *zone);
 
 #endif

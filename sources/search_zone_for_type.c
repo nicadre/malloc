@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   search_zone_for_type.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/02 15:57:48 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/02 17:01:47 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_zones.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+t_zone		*search_zone_for_type(t_zone_type type)
 {
-	if (b)
+	t_zone	*entry;
+	t_list	*pos;
+
+	if (type == e_zone_type_large)
+		return (NULL);
+	pos = g_zones[type].list.next;
+	while (pos != &(g_zones[type].list))
 	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
+		entry = LIST_ENTRY(pos, t_zone, list);
+		if (entry->free_elems > 0)
+			return (entry);
+		pos = pos->next;
 	}
-	return (b);
+	return (NULL);
 }

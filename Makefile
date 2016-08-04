@@ -6,7 +6,7 @@
 #    By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/06/09 13:23:47 by niccheva          #+#    #+#              #
-#    Updated: 2016/07/31 17:46:00 by niccheva         ###   ########.fr        #
+#    Updated: 2016/08/03 21:55:30 by niccheva         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -30,6 +30,7 @@ INCLUDES	=	-I./includes
 INCLUDES	+=	-I./libraries/liblist/includes
 
 SOURCES		=	malloc.c
+SOURCES		+=	free.c
 SOURCES		+=	malloc_bzero.c
 SOURCES		+=	malloc_memset.c
 SOURCES		+=	init_malloc.c
@@ -38,7 +39,16 @@ SOURCES		+=	create_zone_for.c
 SOURCES		+=	size_for_zone_type.c
 SOURCES		+=	size_for_elem_in_zone.c
 SOURCES		+=	add_zone.c
-SOURCES		+=	del_zone.c
+SOURCES		+=	get_zone_for_size.c
+SOURCES		+=	search_first_is_free.c
+SOURCES		+=	search_zone_for_type.c
+SOURCES		+=	zone_type_for_size.c
+SOURCES		+=	show_alloc_mem.c
+SOURCES		+=	malloc_strlen.c
+SOURCES		+=	malloc_putchar.c
+SOURCES		+=	malloc_putstr.c
+SOURCES		+=	malloc_putendl.c
+SOURCES		+=	malloc_putaddr.c
 
 OBJECTS		=	$(patsubst %.c, $(BUILD)/$(DOBJECTS)%.o, $(SOURCES))
 

@@ -1,23 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   malloc_putendl.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/03 19:37:54 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/03 19:39:26 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "t_zones.h"
+#include "puts.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+ssize_t		malloc_putendl(const char *s)
 {
-	if (b)
-	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
-	}
-	return (b);
+	return (malloc_putstr(s) + malloc_putchar('\n'));
 }

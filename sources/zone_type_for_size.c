@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   zone_type_for_size.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/02 16:12:32 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/02 17:02:08 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "malloc.h"
 #include "t_zones.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+t_zone_type		zone_type_for_size(size_t size)
 {
-	if (b)
-	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
-	}
-	return (b);
+	if (size <= TINY)
+		return (e_zone_type_tiny);
+	if (size <= SMALL)
+		return (e_zone_type_small);
+	return (e_zone_type_large);
 }

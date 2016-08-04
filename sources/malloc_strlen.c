@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   malloc_memset.c                                    :+:      :+:    :+:   */
+/*   malloc_strlen.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: niccheva <niccheva@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/07/31 17:24:46 by niccheva          #+#    #+#             */
-/*   Updated: 2016/08/04 00:21:14 by niccheva         ###   ########.fr       */
+/*   Created: 2016/08/03 21:53:47 by niccheva          #+#    #+#             */
+/*   Updated: 2016/08/03 21:54:53 by niccheva         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "t_zones.h"
 
-void		*malloc_memset(void *b, int c, size_t len)
+size_t		malloc_strlen(const char *s)
 {
-	if (b)
+	size_t	size;
+
+	size = 0;
+	if (s)
 	{
-		while (len--)
-			((char *)b)[len] = (unsigned char)c;
+		while (s[size])
+			++size;
 	}
-	return (b);
+	return (size);
 }
